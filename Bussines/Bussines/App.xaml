@@ -1,11 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
+             xmlns:infra="clr-namespace:Bussines.Infrestructure"  
              x:Class="Bussines.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <!--Locator-->
+            <infra:InstanceLocator x:Key="Locator"/>
+            <!--parameters-->
+            <x:String x:Key="UrlApi">https://bussinesapi20190826063612.azurewebsites.net</x:String>
+            <x:String x:Key="UrlPrefix">/api</x:String>
+            <x:String x:Key="UrlProductsController">/BandS</x:String>
+            <x:String x:Key="UrlUsersController">/Users</x:String>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

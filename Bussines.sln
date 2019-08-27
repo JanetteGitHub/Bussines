@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussines.Android", "Bussine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussines.iOS", "Bussines\Bussines.iOS\Bussines.iOS.csproj", "{FF8496E7-6FFD-4418-8E8C-B4C42635EB03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussines", "Bussines\Bussines\Bussines.csproj", "{327E000C-D58E-478C-95EA-9E8AF9D023AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bussines", "Bussines\Bussines\Bussines.csproj", "{327E000C-D58E-478C-95EA-9E8AF9D023AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussines.Backend", "Bussines.Backend\Bussines.Backend.csproj", "{3B74B5AF-3430-4B5B-86E6-BD6F5A9CC831}"
 EndProject
@@ -134,6 +134,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_PrefixTranslations = False
 		SolutionGuid = {214368AD-A860-41A5-BFFA-35FEF5A8D637}
 	EndGlobalSection
 EndGlobal
