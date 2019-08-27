@@ -9,6 +9,7 @@ namespace Bussines.Domain.Models
 
         }
 
-        public System.Data.Entity.DbSet<Bussines.Common.Models.BandS> BandS { get; set; }
+        public DbSet<Common.Models.BandS> BandS { get; set; }
+
     }
 }
