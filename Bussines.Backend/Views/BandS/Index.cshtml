@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>SERVICIOS Y NEGOCIOS</h2>
+<h2>Productos y Servicios</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create",new { }, new { @class ="btn btn-primary"})
+    @Html.ActionLink("Crear Nuevo", "Create",new { },new {@class="btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -38,7 +38,10 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImagePath)
+            @if (!string.IsNullOrEmpty(item.ImagePath))
+            {
+                <img src="@Url.Content(item.ImagePath)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Address)
@@ -53,9 +56,9 @@
             @Html.DisplayFor(modelItem => item.PublishOn)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.BandSId }, new { @class ="btn btn-warning"}) 
-            @Html.ActionLink("Detalles", "Details", new { id=item.BandSId }, new { @class ="btn btn-info"}) 
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.BandSId }, new { @class ="btn btn-danger"})
+            @Html.ActionLink("Editar", "Edit", new { id=item.BandSId },new {@class="btn btn-warning" }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.BandSId },new {@class="btn btn-info" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.BandSId },new {@class="btn btn-danger" })
         </td>
     </tr>
 }

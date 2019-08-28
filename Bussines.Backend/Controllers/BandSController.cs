@@ -1,15 +1,19 @@
 ﻿
+
 namespace Bussines.Backend.Controllers
 {
-    using System.Net;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
     using System.Data.Entity;
+    using System.Linq;
     using System.Threading.Tasks;
+    using System.Net;
+    using System.Web;
     using System.Web.Mvc;
     using Bussines.Backend.Models;
     using Bussines.Common.Models;
-    using System.Linq;
     using Bussines.Backend.Helpers;
-    using System;
 
     public class BandSController : Controller
     {
@@ -28,14 +32,11 @@ namespace Bussines.Backend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             var bandS = await this.db.BandS.FindAsync(id);
-
             if (bandS == null)
             {
                 return HttpNotFound();
             }
-
             return View(bandS);
         }
 
@@ -45,15 +46,14 @@ namespace Bussines.Backend.Controllers
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create( BandSView view)
+        public async Task<ActionResult> Create(BandSView view)
         {
             if (ModelState.IsValid)
             {
                 var pic = string.Empty;
-                var folder = "~/Content/Products";
+                var folder = "~/Content/BandS";
 
                 if (view.ImageFile != null)
                 {
@@ -63,7 +63,7 @@ namespace Bussines.Backend.Controllers
 
                 }
 
-                var bandS = this.ToBandS(view,pic);
+                var bandS = this.ToBandS(view, pic);
                 this.db.BandS.Add(bandS);
                 await this.db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -72,15 +72,16 @@ namespace Bussines.Backend.Controllers
             return View(view);
         }
 
-        private BandS ToBandS(BandSView view,string pic)
+        private BandS ToBandS(BandSView view, string pic)
         {
             return new BandS
             {
-                Description=view.Description,
+                Description = view.Description,
                 ImagePath = pic,
                 Address = view.Address,
                 Phone = view.Phone,
-                PublishOn = view.PublishOn,
+                BandSId = view.BandSId,
+                 PublishOn= view.PublishOn,
                 Remarks = view.Remarks,
             };
         }
@@ -99,22 +100,48 @@ namespace Bussines.Backend.Controllers
             {
                 return HttpNotFound();
             }
+            var view = this.ToView(bandS);
+            return View(view);
+        }
 
-            return View(bandS);
+        private BandSView ToView(BandS bandS)
+        {
+            return new BandSView
+            {
+                Description = bandS.Description,
+                ImagePath = bandS.ImagePath,
+                Address = bandS.Address,
+                Phone = bandS.Phone,
+                BandSId = bandS.BandSId,
+                PublishOn = bandS.PublishOn,
+                Remarks = bandS.Remarks,
+            };
         }
 
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(BandS bandS)
+        public async Task<ActionResult> Edit(BandSView view)
         {
             if (ModelState.IsValid)
             {
+                var pic = view.ImagePath;
+                var folder = "~/Content/BandS";
+
+                if (view.ImageFile != null)
+                {
+
+                    pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                    pic = $"{folder}/{pic}";
+
+                }
+
+                var bandS = this.ToBandS(view, pic);
                 this.db.Entry(bandS).State = EntityState.Modified;
                 await this.db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(bandS);
+            return View(view);
         }
 
         // GET: BandS/Delete/5
@@ -126,12 +153,10 @@ namespace Bussines.Backend.Controllers
             }
 
             var bandS = await this.db.BandS.FindAsync(id);
-
             if (bandS == null)
             {
                 return HttpNotFound();
             }
-
             return View(bandS);
         }
 
@@ -140,7 +165,7 @@ namespace Bussines.Backend.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            BandS bandS = await this.db.BandS.FindAsync(id);
+            var bandS = await this.db.BandS.FindAsync(id);
             this.db.BandS.Remove(bandS);
             await this.db.SaveChangesAsync();
             return RedirectToAction("Index");

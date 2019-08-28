@@ -30,9 +30,29 @@ namespace Bussines.Common.Models
 
         [Required]
         [Display(Name = "Fecha de Publicacion")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.Date)]     
         public DateTime PublishOn { get; set; }
+
+        //[NotMapped]
+        //public byte[] ImageArray { get; set; }
+
+        //public string ImageFullPath
+        //{
+        //    get
+        //    {
+
+        //        if (string.IsNullOrEmpty(this.ImagePath))
+        //        {
+        //            return "productDefault";
+
+        //        }
+        //        return $"https://foodapi20190807091922.azurewebsites.net/{ this.ImagePath.Substring(1)}";
+
+
+
+
+        //    }
+        //}
 
         public override string ToString()
         {
