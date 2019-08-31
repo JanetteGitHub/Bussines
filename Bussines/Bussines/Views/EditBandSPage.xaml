@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             xmlns:i18n="clr-namespace:Bussines.Helpers"
+             mc:Ignorable="d"
+             x:Class="Bussines.Views.EditBandSPage"
+             Title="{i18n:Traslate EditBandS}"
+             BackgroundImageSource="IMG_20190829_041738">
+    <ContentPage.Content>
+        <ScrollView
+             BindingContext="{Binding EditBandS}">
+            <StackLayout          
+                    Padding="5">
+                <Image
+                    Source="{Binding ImageSource}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding changeImageCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    FontSize="Small"
+                    HorizontalOptions="Center"
+                    Text="{i18n:Traslate ChangeImage}"
+                    TextColor="White">
+                </Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="{i18n:Traslate Description}"
+                        VerticalOptions="Center"
+                        TextColor="WhiteSmoke">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="{Binding BandS.Description}"
+                        Placeholder="{i18n:Traslate DescriptionPlaceHolder}"
+                        TextColor="WhiteSmoke"
+                        PlaceholderColor="Black"
+                        >
+                    </Entry>
+
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Text="{i18n:Traslate phone}"
+                        VerticalOptions="Center"
+                        TextColor="WhiteSmoke">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Keyboard="Numeric"
+                        Text="{Binding BandS.Phone}"
+                        Placeholder="{i18n:Traslate PhonePlaceHolder}"
+                        PlaceholderColor="Black"
+                        TextColor="WhiteSmoke">
+                    </Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="{i18n:Traslate Address}"
+                        VerticalOptions="Center"
+                        TextColor="WhiteSmoke">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Text="{Binding BandS.Address}"
+                        Placeholder="{i18n:Traslate AddressPlaceHolder}"
+                        PlaceholderColor="Black"
+                        TextColor="WhiteSmoke">
+                    </Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="{i18n:Traslate Remarks}"
+                        VerticalOptions="Center"
+                        TextColor="WhiteSmoke">
+                    </Label>
+                    <Editor
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Text="{Binding BandS.Remarks}"
+                        VerticalOptions="FillAndExpand"
+                        Placeholder="{i18n:Traslate RemarksPlaceHolder}"
+                         PlaceholderColor="Black"
+                        TextColor="WhiteSmoke"
+                        >
+                    </Editor>
+                </Grid>
+                <ActivityIndicator
+                        IsRunning="{Binding IsRunning}"
+                        VerticalOptions="FillAndExpand">
+                </ActivityIndicator>
+                <Button
+                        BackgroundColor="OrangeRed"
+                        BorderRadius="23"
+                        Command="{Binding SaveCommand}"
+                        HeightRequest="46"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="{i18n:Traslate Save}"
+                        TextColor="White">
+                </Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

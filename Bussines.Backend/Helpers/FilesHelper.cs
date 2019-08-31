@@ -19,5 +19,6 @@ namespace Bussines.Backend.Helpers
 
             return pic;
         }
+
     }
 }

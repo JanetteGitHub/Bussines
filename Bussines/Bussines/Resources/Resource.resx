@@ -138,4 +138,103 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="AddBandS" xml:space="preserve">
+    <value>Add new Business or Service</value>
+  </data>
+  <data name="DescriptionPlaceHolder" xml:space="preserve">
+    <value>Enter Name of the busines or service</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AddressPlaceHolder" xml:space="preserve">
+    <value>Enter the adress of bussines or service</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="PhonePlaceHolder" xml:space="preserve">
+    <value>Enter the phone number </value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>About this bussines or service</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="PublishOn" xml:space="preserve">
+    <value>Publish on</value>
+  </data>
+  <data name="RemarksPlaceHolder" xml:space="preserve">
+    <value>Enter information about you bussines or service</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Touch the image for change</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Name bussines or service</value>
+  </data>
+  <data name="DescriptionError" xml:space="preserve">
+    <value>You must enter a name</value>
+  </data>
+  <data name="PhoneError" xml:space="preserve">
+    <value>You must enter a number phone</value>
+  </data>
+  <data name="AddressError" xml:space="preserve">
+    <value>You must enter address</value>
+  </data>
+  <data name="ImageSource" xml:space="preserve">
+    <value>where do you take the picture?</value>
+  </data>
+  <data name="FromGallery" xml:space="preserve">
+    <value>From gallery</value>
+  </data>
+  <data name="NewPicture" xml:space="preserve">
+    <value>Take a new picture</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Are you sure to delete this?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="EditBandS" xml:space="preserve">
+    <value>Edit this bussines or service</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailPlaceHolder" xml:space="preserve">
+    <value>Please enter your email</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordPlaceHolder" xml:space="preserve">
+    <value>Please enter your password</value>
+  </data>
+  <data name="Rememberme" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="Forgot" xml:space="preserve">
+    <value>forgot your password?</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
 </root>

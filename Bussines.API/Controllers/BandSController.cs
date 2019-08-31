@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Description;
-using Bussines.Common.Models;
-using Bussines.Domain.Models;
-
+﻿
 namespace Bussines.API.Controllers
 {
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+    using Bussines.API.Helpers;
+    using Bussines.Common.Models;
+    using Bussines.Domain.Models;
+   
     public class BandSController : ApiController
     {
         private DataContext db = new DataContext();
@@ -21,14 +21,14 @@ namespace Bussines.API.Controllers
         // GET: api/BandS
         public IQueryable<BandS> GetBandS()
         {
-            return db.BandS;
+            return this.db.BandS.OrderBy(p=> p.Description);
         }
 
         // GET: api/BandS/5
         [ResponseType(typeof(BandS))]
         public async Task<IHttpActionResult> GetBandS(int id)
         {
-            BandS bandS = await db.BandS.FindAsync(id);
+            BandS bandS = await this.db.BandS.FindAsync(id);
             if (bandS == null)
             {
                 return NotFound();
@@ -50,12 +50,26 @@ namespace Bussines.API.Controllers
             {
                 return BadRequest();
             }
+            if (bandS.ImageArray != null && bandS.ImageArray.Length > 0)
+            {
+                var stream = new MemoryStream(bandS.ImageArray);
+                var guid = Guid.NewGuid().ToString();
+                var file = $"{guid}.jpg";
+                var folder = "~/Content/BandSs";
+                var fullPath = $"{folder}/{file}";
+                var response = FilesHelper.UploadPhoto(stream, folder, file);
 
-            db.Entry(bandS).State = EntityState.Modified;
+                if (response)
+                {
+                    bandS.ImagePath = fullPath;
+                }
+            }
+
+            this.db.Entry(bandS).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await this.db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -69,20 +83,37 @@ namespace Bussines.API.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(bandS);
         }
 
         // POST: api/BandS
         [ResponseType(typeof(BandS))]
         public async Task<IHttpActionResult> PostBandS(BandS bandS)
         {
+            bandS.PublishOn = DateTime.Now.ToUniversalTime();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.BandS.Add(bandS);
-            await db.SaveChangesAsync();
+            if (bandS.ImageArray != null && bandS.ImageArray.Length > 0)
+            {
+                var stream = new MemoryStream(bandS.ImageArray);
+                var guid = Guid.NewGuid().ToString();
+                var file = $"{guid}.jpg";
+                var folder = "~/Content/BandSs";
+                var fullPath = $"{folder}/{file}";
+                var response = FilesHelper.UploadPhoto(stream, folder, file);
+
+                if (response)
+                {
+                    bandS.ImagePath = fullPath;
+                }
+            }
+
+
+            this.db.BandS.Add(bandS);
+            await this.db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = bandS.BandSId }, bandS);
         }
@@ -91,14 +122,14 @@ namespace Bussines.API.Controllers
         [ResponseType(typeof(BandS))]
         public async Task<IHttpActionResult> DeleteBandS(int id)
         {
-            BandS bandS = await db.BandS.FindAsync(id);
+            BandS bandS = await this.db.BandS.FindAsync(id);
             if (bandS == null)
             {
                 return NotFound();
             }
 
-            db.BandS.Remove(bandS);
-            await db.SaveChangesAsync();
+            this.db.BandS.Remove(bandS);
+            await this.db.SaveChangesAsync();
 
             return Ok(bandS);
         }
@@ -107,14 +138,14 @@ namespace Bussines.API.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool BandSExists(int id)
         {
-            return db.BandS.Count(e => e.BandSId == id) > 0;
+            return this.db.BandS.Count(e => e.BandSId == id) > 0;
         }
     }
 }

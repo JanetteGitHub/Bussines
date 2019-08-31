@@ -1,6 +1,7 @@
 ﻿
 namespace Bussines.Domain.Models
 {
+    using Bussines.Common.Models;
     using System.Data.Entity;
     public class DataContext : DbContext
     {
@@ -9,7 +10,7 @@ namespace Bussines.Domain.Models
 
         }
 
-        public DbSet<Common.Models.BandS> BandS { get; set; }
+        public DbSet<BandS> BandS { get; set; }
 
     }
 }

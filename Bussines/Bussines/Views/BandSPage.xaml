@@ -7,11 +7,22 @@
              mc:Ignorable="d"
              x:Class="Bussines.Views.BandSPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             Title="{i18n:Traslate BandS}">
+             Title="{i18n:Traslate BandS}"
+             BackgroundImageSource="c.jpg">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_security" Command="{Binding AddBusinessNoobCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding BandS}"
             Padding="5">
+            <SearchBar
+                HeightRequest="30"
+                Placeholder="Buscar..."
+                SearchCommand="{Binding SearchCommand}"
+                Text="{Binding Filter}"
+                BackgroundColor="White"
+                ></SearchBar>
             <ListView
                 HasUnevenRows="True"
                 IsRefreshing="{Binding IsRefreshing}"
@@ -28,23 +39,36 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <!--<Image
+                                <Image
                                     Grid.Column="0"                    
                                     Source="{Binding ImageFullPath}"
                                     WidthRequest="100">
-
-                            </Image>-->
-                                <Label
-                                    Grid.Column="0"
-                                    VerticalOptions="Center"
-                                    FontAttributes="Bold"
-                                    Text="{Binding Description}">
-                                </Label>
-                                <Label 
+                                </Image>
+                                <StackLayout
                                     Grid.Column="1"
+                                    VerticalOptions="Center">
+                                    
+                                    <Label 
+                                    FontAttributes="Bold"
+                                    Text="{Binding Description}"
+                                    TextColor="WhiteSmoke">
+                                    </Label>
+                                    <Label 
+                                    Text="{Binding Remarks}"
+                                    TextColor="WhiteSmoke">
+                                    </Label>
+                                </StackLayout>
+                                <Label 
+                                    Grid.Column="2"
                                     HorizontalOptions="End"
-                                    Text="{Binding Phone}">
+                                    Text="{Binding Phone}"
+                                    TextColor="WhiteSmoke">
                                 </Label>
+                                <!--<Image
+                                    Grid.Column="3"
+                                    Source="ic_arrow_forward_ios"
+                                    VerticalOptions="Center">
+                                </Image>-->
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

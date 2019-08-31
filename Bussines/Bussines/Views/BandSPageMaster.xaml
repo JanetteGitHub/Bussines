@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:i18n="clr-namespace:Bussines.Helpers"
+             mc:Ignorable="d"
+             x:Class="Bussines.Views.BandSPageMaster"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             Title="{i18n:Traslate BandS}"
+             BackgroundImageSource="IMG_20190829_042005">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="" Command="{Binding AddBusinessCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding BandSMaster}"
+            Padding="5">
+            <SearchBar
+                HeightRequest="30"
+                Placeholder="Buscar..."
+                SearchCommand="{Binding SearchCommand}"
+                Text="{Binding Filter}"
+                BackgroundColor="White"
+                
+                ></SearchBar>
+            <ListView
+                HasUnevenRows="True"
+                IsRefreshing="{Binding IsRefreshing}"
+                IsPullToRefreshEnabled="True"
+                ItemsSource="{Binding BandS}"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="{i18n:Traslate Edit}" Command="{Binding EditProductCommand}"/>
+                                <MenuItem Text="{i18n:Traslate Delete}" Command="{Binding DeleteProductCommand}"/>
+                            </ViewCell.ContextActions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"                    
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="100">
+                                </Image>
+                                <StackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center">
+                                    <Label 
+                                    FontAttributes="Bold"
+                                    Text="{Binding Description}"
+                                     TextColor="WhiteSmoke">
+                                    </Label>
+                                    <Label 
+                                    Text="{Binding Remarks}"
+                                    TextColor="WhiteSmoke">
+                                    </Label>
+                                </StackLayout>
+                                <Label 
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Text="{Binding Phone}"
+                                    TextColor="WhiteSmoke">
+                                </Label>
+                                <!--<Image
+                                    Grid.Column="3"
+                                    Source="ic_arrow_forward_ios"
+                                    VerticalOptions="Center">
+                                </Image>-->
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

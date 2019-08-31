@@ -1,19 +1,14 @@
 ﻿
-
 namespace Bussines.Backend.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Data.Entity;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Net;
-    using System.Web;
-    using System.Web.Mvc;
+    using Bussines.Backend.Helpers;
     using Bussines.Backend.Models;
     using Bussines.Common.Models;
-    using Bussines.Backend.Helpers;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
 
     public class BandSController : Controller
     {
@@ -53,7 +48,7 @@ namespace Bussines.Backend.Controllers
             if (ModelState.IsValid)
             {
                 var pic = string.Empty;
-                var folder = "~/Content/BandS";
+                var folder = "~/Content/BandSs";
 
                 if (view.ImageFile != null)
                 {
@@ -81,7 +76,7 @@ namespace Bussines.Backend.Controllers
                 Address = view.Address,
                 Phone = view.Phone,
                 BandSId = view.BandSId,
-                 PublishOn= view.PublishOn,
+                PublishOn = view.PublishOn,
                 Remarks = view.Remarks,
             };
         }
@@ -118,7 +113,7 @@ namespace Bussines.Backend.Controllers
             };
         }
 
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(BandSView view)
@@ -126,7 +121,7 @@ namespace Bussines.Backend.Controllers
             if (ModelState.IsValid)
             {
                 var pic = view.ImagePath;
-                var folder = "~/Content/BandS";
+                var folder = "~/Content/BandSs";
 
                 if (view.ImageFile != null)
                 {

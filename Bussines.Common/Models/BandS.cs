@@ -5,13 +5,15 @@ namespace Bussines.Common.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class BandS
     {
         #region attributes
         [Key]
         public int BandSId { get; set; }
         [Required]
-        [StringLength(30)]
+        [StringLength(100)]
         //[Index("BansSIndex",IsUnique=true)]
         [Display(Name = "Nombre del servicio o negocio")]
         public string Description { get; set; }
@@ -20,7 +22,7 @@ namespace Bussines.Common.Models
         [Required]
         [Display(Name = "Direccion")]
         public string Address { get; set; }
-        [Required]
+        
         [Display(Name = "Telefono")]
         public string Phone { get; set; }
 
@@ -33,26 +35,26 @@ namespace Bussines.Common.Models
         [DataType(DataType.Date)]     
         public DateTime PublishOn { get; set; }
 
-        //[NotMapped]
-        //public byte[] ImageArray { get; set; }
+        [NotMapped]
+        public byte[] ImageArray { get; set; }
 
-        //public string ImageFullPath
-        //{
-        //    get
-        //    {
+        public string ImageFullPath
+        {
+            get
+            {
 
-        //        if (string.IsNullOrEmpty(this.ImagePath))
-        //        {
-        //            return "productDefault";
+                if (string.IsNullOrEmpty(this.ImagePath))
+                {
+                    return "business";
 
-        //        }
-        //        return $"https://foodapi20190807091922.azurewebsites.net/{ this.ImagePath.Substring(1)}";
-
-
+                }
+                return $"https://bussinesapi20190826063612.azurewebsites.net/{ this.ImagePath.Substring(1)}";
 
 
-        //    }
-        //}
+
+
+            }
+        }
 
         public override string ToString()
         {

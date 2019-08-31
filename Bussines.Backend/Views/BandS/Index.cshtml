@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Productos y Servicios</h2>
+<h2>SERVICIOS Y NEGOCIOS</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo", "Create",new { },new {@class="btn btn-primary" })
+    @Html.ActionLink("Crear Nuevo", "Create",new { },new { @class="btn btn-primary"})
 </p>
 <table class="table">
     <tr>
@@ -40,7 +40,7 @@
         <td>
             @if (!string.IsNullOrEmpty(item.ImagePath))
             {
-                <img src="@Url.Content(item.ImagePath)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
+                <img src="@Url.Content(item.ImageFullPath)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
             }
         </td>
         <td>

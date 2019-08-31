@@ -2,6 +2,7 @@
 
 namespace Bussines
 {
+    using Bussines.ViewModels;
     using Bussines.Views;
     using Xamarin.Forms;
     public partial class App : Application
@@ -10,7 +11,8 @@ namespace Bussines
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new BandSPage());
+            MainViewModel.GetInstance().Welcome = new WelcomePageViewModel();
+            MainPage = new WelcomePage();
         }
 
         protected override void OnStart()
