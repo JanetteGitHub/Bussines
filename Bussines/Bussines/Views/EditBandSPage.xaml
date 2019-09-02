@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Class="Bussines.Views.EditBandSPage"
              Title="{i18n:Traslate EditBandS}"
-             BackgroundImageSource="IMG_20190829_041738">
+             BackgroundImageSource="IMG_20190831_175729">
     <ContentPage.Content>
         <ScrollView
              BindingContext="{Binding EditBandS}">

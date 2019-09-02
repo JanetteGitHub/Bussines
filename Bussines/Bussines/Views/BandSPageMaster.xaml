@@ -8,9 +8,9 @@
              x:Class="Bussines.Views.BandSPageMaster"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="{i18n:Traslate BandS}"
-             BackgroundImageSource="IMG_20190829_042005">
+             BackgroundImageSource="IMG_20190831_175729">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="" Command="{Binding AddBusinessCommand}"/>
+        <ToolbarItem Icon="ic_action_add_circle" Command="{Binding AddBusinessCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
